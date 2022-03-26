@@ -1,0 +1,48 @@
+						LBEPS
+1 What is a programming language ?
+2 What is IPO cycle ?
+3 What are programs?
+4 Waht is binary language ?
+5 What is compiler ?
+6 What are Algorithm ?
+7 What is pseudosode ?
+8 Infloantion programming language ?
+9 What is operands and operators ?
+10 Tell me about all Extention ?
+11 Tell me about all type of scanner ?
+12 Tell me about Domein, browers and Search Engion ?
+
+
+						JAVA
+
+What is the difference between Print and Println in java ?
+from where the main method come?
+where main method defined ?
+what is System.out.println ?
+
+printStackTrace() :- The java.lang.Throwable.printStackTrace() method prints this throwable and its backtrace to the standard error stream. It prints a stack trace for this Throwable object on the error output stream that is the value of the field System.err.
+
+
+				Propagation :-
+ An exception is first thrown from the top of the stack and if it is not caught, it drops down the call stack to the previous method,If not caught there, the exception again drops down to the previous method, and so on until they are caught or until they reach the very bottom of the call stack.This is called exception propagation.
+
+Rule: By default Unchecked Exceptions are forwarded in calling chain (propagated).
+
+
+				how can we create object in java by different way?
+				
+
+
+
+
+
+                   			Identifier
+
+All Java components require names. Name used for classes, methods, interfaces and variables are called                 Identifier. Identifier must follow some rules. Here are the rules:
+
+ 1. All identifiers must start with either a letter( a to z or A to Z ) or currency character($) or an underscore.
+ 2. After the first character, an identifier can have any combination of characters.
+ 3. A Java keyword cannot be used as an identifier.
+ 4. Identifiers in Java are case sensitive, foo and Foo are two different identifiers.
+
+  

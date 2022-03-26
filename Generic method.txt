@@ -1,0 +1,224 @@
+
+Type Parameters
+The type parameters naming conventions are important to learn generics thoroughly. The common type parameters are as follows:
+
+T - Type
+E - Element
+K - Key
+N - Number
+V - Value							
+
+					Generic Methods
+
+.Generic methods are methods that introduce their own type parameters. This is similar to declaring a generic type, but the type parameter's scope is limited to the method where it is declared. Static and non-static generic methods are allowed, as well as generic class constructors.
+
+The syntax for a generic method includes a list of type parameters, inside angle brackets, which appears before the method's return type. For static generic methods, the type parameter section must appear before the method's return type.
+
+The Util class includes a generic method, compare, which compares two Pair objects:
+
+public class Util {
+    public static <K, V> boolean compare(Pair<K, V> p1, Pair<K, V> p2) {
+        return p1.getKey().equals(p2.getKey()) &&
+               p1.getValue().equals(p2.getValue());
+    }
+}
+
+public class Pair<K, V> {
+
+    private K key;
+    private V value;
+
+    public Pair(K key, V value) {
+        this.key = key;
+        this.value = value;
+    }
+
+    public void setKey(K key) { this.key = key; }
+    public void setValue(V value) { this.value = value; }
+    public K getKey()   { return key; }
+    public V getValue() { return value; }
+}
+The complete syntax for invoking this method would be:
+
+	Pair<Integer, String> p1 = new Pair<>(1, "apple");
+	Pair<Integer, String> p2 = new Pair<>(2, "pear");
+	boolean same = Util.<Integer, String>compare(p1, p2);
+
+The type has been explicitly provided, as shown in bold. Generally, this can be left out and the compiler will infer the type that is needed:
+
+	Pair<Integer, String> p1 = new Pair<>(1, "apple");
+	Pair<Integer, String> p2 = new Pair<>(2, "pear");
+	boolean same = Util.compare(p1, p2);
+
+This feature, known as type inference, allows you to invoke a generic method as an ordinary method, without specifying a type between angle brackets. This topic is further discussed in the following section, 
+
+
+
+
+
+
+collection doesnot spot primitive datatype
+collection with genarics 
+Genarics sapots Type safty
+ArrayList<Integer> l = new ArrayList<Integer>();
+
+
+import java.util.*;
+class Method
+{
+	public static void main(String []arags)
+	{
+	HashSet t = new HashSet();
+	System.out.println(t.add(12));
+	System.out.println(t.add(12));
+	System.out.println(t.add(45));
+	System.out.println(t.add("Java"));
+	System.out.println(t.add("C++"));
+	System.out.println(t.add(C#));
+	System.out.println(t.add("C#"));
+	}
+}
+
+	The question mark (?) is known as the wildcard in generic programming . It represents an unknown type. The wildcard can be used in a variety of situations such as the type of a parameter, field, or local variable; sometimes as a return type. Unlike arrays, different instantiations of a generic type are not compatible with each other, not even explicitly. This incompatibility may be softened by the wildcard if ? is used as an actual type parameter.
+
+					Types of wildcards in Java:
+
+1. Upper Bounded Wildcards:
+ These wildcards can be used when you want to relax the restrictions on a variable. For example, say you want to write a method that works on List < integer >, List < double >, and List < number > , you can do this  using an upper bounded wildcard.
+To declare an upper-bounded wildcard, use the wildcard character (‘?’), followed by the extends keyword, followed by its upper bound.
+
+public static void add(List<? extends Number> list)
+Implementation:
+
+filter_none
+edit
+play_arrow
+
+brightness_4
+//Java program to demonstrate Upper Bounded Wildcards 
+import java.util.Arrays; 
+import java.util.List; 
+  
+class WildcardDemo 
+{ 
+    public static void main(String[] args) 
+    { 
+          
+        //Upper Bounded Integer List 
+        List<Integer> list1= Arrays.asList(4,5,6,7); 
+          
+        //printing the sum of elements in list 
+        System.out.println("Total sum is:"+sum(list1)); 
+  
+        //Double list 
+        List<Double> list2=Arrays.asList(4.1,5.1,6.1); 
+          
+        //printing the sum of elements in list 
+        System.out.print("Total sum is:"+sum(list2)); 
+    } 
+  
+    private static double sum(List<? extends Number> list)  
+    { 
+        double sum=0.0; 
+        for (Number i: list) 
+        { 
+            sum+=i.doubleValue(); 
+        } 
+  
+        return sum; 
+    } 
+} 
+Output:
+
+Total sum is:22.0
+Total sum is:15.299999999999999
+In the above program, list1 and list2 are objects of the List class. list1 is a collection of Integer and list2 is a collection of Double. Both of them are being passed to method sum which has a wildcard that extends Number. This means that list being passed can be of any field or subclass of that field. Here, Integer and Double are subclasses of class Number.
+
+2. Lower Bounded Wildcards: 
+It is expressed using the wildcard character (‘?’), followed by the super keyword, followed by its lower bound: <? super A>.
+ Syntax: Collectiontype <? super A>
+Implementation:
+
+filter_none
+edit
+play_arrow
+
+brightness_4
+//Java program to demonstrate Lower Bounded Wildcards 
+import java.util.Arrays; 
+import java.util.List; 
+  
+class WildcardDemo 
+{ 
+    public static void main(String[] args) 
+    { 
+        //Lower Bounded Integer List 
+        List<Integer> list1= Arrays.asList(4,5,6,7); 
+          
+        //Integer list object is being passed 
+        printOnlyIntegerClassorSuperClass(list1); 
+  
+        //Number list 
+        List<Number> list2= Arrays.asList(4,5,6,7); 
+          
+        //Integer list object is being passed 
+        printOnlyIntegerClassorSuperClass(list2); 
+    } 
+  
+    public static void printOnlyIntegerClassorSuperClass(List<? super Integer> list) 
+    { 
+        System.out.println(list); 
+    } 
+} 
+Output:
+
+[4, 5, 6, 7]
+[4, 5, 6, 7]
+Here arguments can be Integer or superclass of Integer(which is Number). The method printOnlyIntegerClassorSuperClass will only take Integer or its superclass objects. However if we pass list of type Double then we will get compilation error. It is because only the Integer field or its superclass can be passed . Double is not the superclass of Integer.
+
+Use extend wildcard when you want to get values out of a structure and super wildcard when you put values in a structure. Don’t use wildcard when you get and put values in a structure.
+
+Note: You can specify an upper bound for a wildcard, or you can specify a lower bound, but you cannot specify both.
+
+3. Unbounded Wildcard: 
+
+This wildcard type is specified using the wildcard character (?), for example, List. This is called a list of unknown type. These are useful in the following cases
+When writing a method which can be employed using functionality provided in Object class.
+When the code is using methods in the generic class that don’t depend on the type parameter
+Implementation:
+
+filter_none
+edit
+play_arrow
+
+brightness_4
+//Java program to demonstrate Unbounded wildcard 
+import java.util.Arrays; 
+import java.util.List; 
+  
+class unboundedwildcardemo 
+{ 
+    public static void main(String[] args)  
+    { 
+  
+        //Integer List 
+        List<Integer> list1= Arrays.asList(1,2,3); 
+  
+        //Double list 
+        List<Double> list2=Arrays.asList(1.1,2.2,3.3); 
+  
+        printlist(list1); 
+  
+        printlist(list2); 
+    } 
+  
+    private static void printlist(List<?> list)  
+    { 
+  
+        System.out.println(list); 
+    } 
+} 
+Output:
+
+[1, 2, 3]
+[1.1, 2.2, 3.3]

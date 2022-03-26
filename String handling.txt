@@ -1,0 +1,458 @@
+					           Method overloading 
+When in same class we have same name's method this is called method overlolading, but when we pass the value in paranthies then we achieve 
+method overloading.
+class Test
+{
+	static double show(double f,double g)
+	{
+	return f+g;
+	}
+
+	static int show(int a,int b)
+	{
+	return a+b;
+	}
+
+	public static void main(String[]args)
+	{
+	System.out.println(show(5,2));
+	System.out.println(show(5.2,2.5));
+	}
+}
+
+
+						METHOD OVERRIDING
+
+when parent class method and child class method having same name that is know as method over riding 
+by the help of method over riding we achieve runtime polymorphism.
+
+to declare a over ride mehtod     
+1. The method must have the same name as in the parent class 
+2. the mehtod have must same parameteres as defined in the parent class  
+3. it should define is a relationship 
+class obj
+{
+	void check()
+	{
+	System.out.println("Obj Check..");
+	}
+}
+class Test extends obj
+{
+	void check()
+		{
+		System.out.println("Obj Check..");
+		}
+
+
+	public static void main(String[]args)
+	{
+	Test t = new Test();
+	t.check();
+	}
+}
+
+
+						UPCASTING
+
+		Upcasting achieves when parent class reference varibale hold child class object
+
+class obj
+{
+		static String name="obj";
+}
+class Test extends Obj
+{
+	static String name = "Test";
+
+	public static void main(String[]args)
+	{
+	obj ref = new Test(); //Upcasting
+	System.out.println(name);
+	}
+}
+
+
+					final keyword
+
+		    we use final keyword to restript the user.we can use final keyword with variables methods and classes 
+
+		1. final keyword with variables if we are declaring any varibale as final then we cannot change its value again
+    			that mean we can declare a constant variable by final keyword.
+
+class Test
+{
+	public static void main(String[]args)
+	{
+		final int MAX = 15;
+		MAX =25;\\ CT Error
+	}
+}
+
+					2. final with method 
+
+if we are declaring any method as final then we cannot override that method 
+
+
+class demo 
+{
+	final void show()
+	{
+	}
+
+	public static void main(String[]args)
+	{	
+	}
+}
+
+
+						final with class
+
+If we are declaring final with class we cannot extends that class
+
+
+final class Demo
+{
+}
+class Test extends Demo// CT Error 
+{
+	public static void main(String[]args)
+	{
+	}
+}  
+						  Bean Class
+
+	A java Bean class that should follow following conventions 	
+	1. It should hava a no-arg constructor.
+	2. It should be Serializable.
+	3. It should provide methods to set and get the value of the properties, known as getter and setter methods.
+        				
+						  Parsing
+ 
+	parsing is use to convert object value into primitive.
+	Like  We can convert String into int.
+
+
+                                    				String Handling
+ 	
+In Java, string is basically an object that represents sequence of char values. An array of characters works same as Java string.
+char []ch = {'j','a','v','a','t','p','o','i','n','t'};
+String s = new String(ch);
+
+String s = "welcome";
+s =s.concat("arya");
+System.out.println(s);
+
+System.out.println(new String("done"));
+
+System.out.println("Working");
+
+                            			Immutable String in Java
+
+In java, string objects are immutable. Immutable simply means unmodifiable or unchangeable.
+Once string object is created its data or state can't be changed but a new string object is created.
+Let's try to understand the immutability concept by the example given below:
+
+	class Testimmutablestring{  
+ 	public static void main(String args[]){  
+   	String s="Sachin";  
+   	s.concat(" Tendulkar");//concat() method appends the string at the end  
+   	System.out.println(s);//will print Sachin because strings are immutable objects  
+ 	}  
+	}  
+	class Testimmutablestring1
+{  
+	 public static void main(String args[])
+{  
+   	String s="Sachin";  
+   	s=s.concat(" Tendulkar");  
+   	System.out.println(s);  
+}  
+}  
+
+ 					Why string objects are immutable in java?
+Because java uses the concept of string literal.Suppose there are 5 reference variables,all referes to one object "sachin".
+If one reference variable changes the value of the object, it will be affected to all the reference variables.
+That is why string objects are immutable in java.
+
+
+					What is marker interface ?
+
+It is correct in the parts that (1) a marker interface must be empty, and (2) implementing it is meant to imply some special treatment of the 
+implementing class. The part that is incorrect is that it implies that JVM or the compiler would treat the objects of that class differently: you are
+correct in observing that it is the code of Java class library that treats these objects as cloneable, serializable, etc. It has nothing to do with the 
+compiler or the JVM.
+
+instead of using the instanceOf operator why can't the method be something like writeObject(Serializable) so that there is a compile-time type 
+checking - This lets you avoid polluting your code with the name of the marker interface when a "plain Object" is needed. 
+For example, if you make a class that needs to be serializable, and has object members, you would be forced to either do casting or make your 
+objects Serializable at compile time. This is inconvenient, because the interface is devoid of any functionality.
+
+How Annotations are better than Marker Interfaces? - They let you achieve the same purpose of conveying metadata about the class to its 
+consumers without creating a separate type for it. Annotations are more powerful, too, letting programmers pass more sophisticated information 
+to classes that "consume" it.
+
+
+String handling 
+1. String 
+2. String Buffer
+3. String Builder
+
+   					String Buffer
+
+String buffer is same like String, but it is mutable. We cannot create Literal of String buffer class.StringBuffer is in java.Lang package.
+Note :- We will get compile time error because we cannot create StringBuffer object as a Literal.
+class Test 
+{
+public static void main(String []args)
+{
+StringBuffer gaurav = "Gaurav";
+}
+}
+
+					  We can create object of StringBuffer by new keyword.
+
+class Test
+{
+public static void main(String []args)
+{
+StringBuffer gaurav = new StringBuffer("gaurav");
+}
+}
+					 Use of append keyword with StringBuffer
+class Example
+{
+public static void main(String []args)
+{
+StringBuffer gaurav = new StringBuffer("Gaurav"); gaurav.append(" NIIT");
+System.out.println(gaurav);
+}
+}
+
+	                                           		String Builder
+
+	This class is introduce in java 1.5. It is same like string buffer, but it is faster than stringBuffer and it is mutable class. 
+
+
+					toString() method
+ 
+	Is use to represent any object as a  String.
+
+ 
+	        		
+					Exception handling
+ 
+	finally :- always executed weather exception ocuers or not ocuers.
+Example :-	
+class Test
+{
+public static void main(String []args)
+{
+try
+{
+System.out.println(2/0);
+}
+catch(NullPointerException e)
+{
+System.out.println(e);
+}
+finally {
+System.out.println("finally excuted");}
+}
+}
+					throw :- keyword is use to create our own Exception 
+	class Demo
+{
+public static void main(String []aegs)
+{
+if(18>20)
+System.out.println("less");
+else
+throw new ArthimeticException("wait for 2 yrs");
+}
+}
+				throws :- is use to aware other programmers that exception may occuer in that code 
+
+	class Demo
+{
+public static void main(String []args)
+{
+Demo d = new Demo();
+try
+{
+t.m1();
+}
+catch(Exception e)
+{
+}
+System.out.println("rest of code");
+}
+void m1() throws Exception 
+{
+System.out.println(2/0);
+}
+}
+
+
+				Regex :- Regular Expression
+
+				Matcher class
+
+	It implements the MatchResult interface. It is a regex engine which is used to perform match operations on a character sequence.
+
+No.		Method					Description
+1	boolean matches()			test whether the regular expression matches the pattern.
+2	boolean find()				finds the next expression that matches the pattern.
+3	boolean find(int start)			finds the next expression that matches the pattern from the given 						start number.
+4	String group()				returns the matched subsequence.
+5	int start()				returns the starting index of the matched subsequence.
+6	int end()				returns the ending index of the matched subsequence.
+7	int groupCount()			returns the total number of the matched subsequence.
+
+				Pattern class
+
+
+	It is the compiled version of a regular expression. It is used to define a pattern for the regex engine.
+
+No.	Method					Description
+1	static Pattern compile(String regex)	compiles the given regex and returns the instance of the Pattern.
+2	Matcher matcher(CharSequence input)	creates a matcher that matches the given input with the pattern.
+3	static boolean matches			It works as the combination of compile and 					(String regex, CharSequence input)	matcher methods. It compiles the regular 									        expression and matches the given input with 									        the pattern.
+4	String[] split(CharSequence input)	splits the given input string around matches of given pattern.
+5	String pattern()	                returns the regex pattern.
+
+
+
+
+
+				Regex Character classes
+
+No.		Character 				Class	Description
+1		[abc]	                            	a, b, or c (simple class)
+2		[^abc]					Any character except a, b, or c (negation)
+3		[a-zA-Z]				a through z or A through Z, inclusive (range)
+4		[a-d[m-p]]				a through d, or m through p: [a-dm-p] (union)
+5		[a-z&&[def]]				d, e, or f (intersection)
+6		[a-z&&[^bc]]				a through z, except for	 b and c: [ad-z] (subtraction)
+7		[a-z&&[^m-p]]				a through z, and not m through p: [a-lq-z](subtraction)
+
+
+				Regex Quantifiers
+	The quantifiers specify the number of occurrences of a character.
+
+	Regex		Description
+	X?		X occurs once or not at all
+	X+		X occurs once or more times	
+	X*		X occurs zero or more times
+	X{n}		X occurs n times only
+	X{n,}		X occurs n or more times
+	X{y,z}		X occurs at least y times but less than z times
+
+
+		Regular Expression Character classes and Quantifiers Example
+
+import java.util.regex.*;  
+class RegexExample4
+{  
+public static void main(String args[])
+{  
+System.out.println("? quantifier ....");  
+System.out.println(Pattern.matches("[amn]?", "a"));//true (a or m or n comes one time)  
+System.out.println(Pattern.matches("[amn]?", "aaa"));//false (a comes more than one time)  
+System.out.println(Pattern.matches("[amn]?", "aammmnn"));//false (a m and n comes more than one time)  
+System.out.println(Pattern.matches("[amn]?", "aazzta"));//false (a comes more than one time)  
+System.out.println(Pattern.matches("[amn]?", "am"));//false (a or m or n must come one time)  
+  
+System.out.println("+ quantifier ....");  
+System.out.println(Pattern.matches("[amn]+", "a"));//true (a or m or n once or more times)  
+System.out.println(Pattern.matches("[amn]+", "aaa"));//true (a comes more than one time)  
+System.out.println(Pattern.matches("[amn]+", "aammmnn"));//true (a or m or n comes more than once)  
+System.out.println(Pattern.matches("[amn]+", "aazzta"));//false (z and t are not matching pattern)  
+  
+System.out.println("* quantifier ....");  
+System.out.println(Pattern.matches("[amn]*", "ammmna"));//true (a or m or n may come zero or more times)  
+  
+}
+}  
+
+
+				Regex Metacharacters
+
+		The regular expression metacharacters work as shortcodes.
+
+	Regex	Description
+	.	Any character (may or may not match terminator)
+	\d	Any digits, short of [0-9]
+	\D	Any non-digit, short for [^0-9]
+	\s	Any whitespace character, short for [\t\n\x0B\f\r]
+	\S	Any non-whitespace character, short for [^\s]
+	\w	Any word character, short for [a-zA-Z_0-9]
+	\W	Any non-word character, short for [^\w]
+	\b	A word boundary
+	\B	A non word boundary
+
+
+				Regular Expression Metacharacters Example
+
+import java.util.regex.*;  
+class RegexExample5
+{  
+public static void main(String args[])
+{  
+System.out.println("metacharacters d....");\\d means digit  
+  
+System.out.println(Pattern.matches("\\d", "abc"));//false (non-digit)  
+System.out.println(Pattern.matches("\\d", "1"));//true (digit and comes once)  
+System.out.println(Pattern.matches("\\d", "4443"));//false (digit but comes more than once)  
+System.out.println(Pattern.matches("\\d", "323abc"));//false (digit and char)  
+  
+System.out.println("metacharacters D....");\\D means non-digit  
+  
+System.out.println(Pattern.matches("\\D", "abc"));//false (non-digit but comes more than once)  
+System.out.println(Pattern.matches("\\D", "1"));//false (digit)  
+System.out.println(Pattern.matches("\\D", "4443"));//false (digit)  
+System.out.println(Pattern.matches("\\D", "323abc"));//false (digit and char)  
+System.out.println(Pattern.matches("\\D", "m"));//true (non-digit and comes once)  
+  
+System.out.println("metacharacters D with quantifier....");  
+System.out.println(Pattern.matches("\\D*", "mak"));//true (non-digit and may come 0 or more times)  
+  
+}
+}
+				Split() method	
+
+			Split method is use to split a String.
+			
+			How to remove the (.) in a program.
+package Gaurav;
+import java.util.regex.*;
+class Vishal 
+{
+public static void main(String []args)
+{
+Pattern p = Pattern.compile("\\.");
+String []s= p.split("niit.co.in");
+for(String ss : s)
+{
+System.out.println(ss);
+}
+} 
+}
+
+			StringTokenizer() Method
+
+import java.util.*;
+class StringTokenizerExample
+{
+public static void main(String []args)
+{
+StringTokenizer st = new StringTokenizer("My name is Gaurav");
+while (st.hasMoreTokens())
+{
+System.out.println(st.nextToken());
+}
+}
+} 
+
+				Filewriter
+	we can not use ascape character in filewriter.
