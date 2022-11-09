@@ -20,4 +20,5 @@ int Gaurav()
 {
 System.out.println(80*6);
 return 0;
-}}
+}
+}

@@ -1,3 +1,4 @@
+import java.util.Scanner;
 public class PyramidPattern
 {
 	public static void main(String []atgs)
@@ -6,7 +7,10 @@ public class PyramidPattern
 	// i for rows and j for columns
 	// row denotes the number of rows you want to print
 	
-	int i, j, row=6;
+	int i, j, row;
+	Scanner scan = new Scanner(System.in);
+	System.out.println("Enter your Number for Pyramid?");
+	row = scan.nextInt();
 	//Outer loop work for rows
 	
 	for(i=0;i<row;i++)
